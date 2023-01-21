@@ -12,11 +12,17 @@
 convert_to_Valencia_taxonomy <- function(input, tax_table){
   # input must be a matrix or a data.frame
   # tax_table must be a data.frame with the following taxonomic levels: ADD
-  # TODO: check tax_table : taxonomic levels + add how to deal with missing
 
   if (any(is.na(input))) {
     warning("Missing data in the `input` table are replaced by 0.\n")
     input[is.na(input)] <- 0
+  }
+
+  if (!all(taxonomic_levels %in% colnames(tax_table))) {
+    stop(
+      paste0("`tax_table` must have the following taxonomic levels: ",
+             paste0(taxonomic_levels, collapse = ", "))
+    )
   }
 
   v_clusters <- get_Valencia_clusters()

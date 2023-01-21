@@ -1,27 +1,32 @@
-Package: ValenciaR
 Type: Package
-Title: What the Package Does (Title Case)
+Package: ValenciaR
+Title: Assigns vaginal microbiota samples to VALENCIA CSTs
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Laura Symul
+Maintainer: Laura Symul <lsymul@stanford.edu>
+Description: ValenciaR allows users to assign VALENCIA CSTs to samples from an 
+    ASV/OTU count or proportion table. For more details on VALENCIA, see 
+    VALENCIA: a nearest centroid classification method for vaginal microbial 
+    communities based on composition, France et al., 2020, 
+    https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00934-6
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
 Depends: 
     magrittr,
     R (>= 2.10)
 Imports: 
     dplyr,
-    ggplot2,
     readr,
     stringr,
     tidyr,
     YC
 Suggests: 
+    ggplot2,
     knitr,
     rmarkdown
-Remotes: lasy/YC
-VignetteBuilder: knitr
+VignetteBuilder: 
+    knitr
+Remotes: 
+    lasy/YC
+Encoding: UTF-8
+LazyData: true
 RoxygenNote: 7.2.3
