@@ -20,7 +20,7 @@ library(ggplot2)
 ```
 
 
-```{r}
+```{r, eval = FALSE}
 
 sample_data <- readRDS("/Users/laurasymul/Dropbox/Gates LACTIN-V/16S_data/LactinV_16S_draft_incomplete_2022_09_15.RDS")
 input <- sample_data@otu_table %>% as.data.frame()

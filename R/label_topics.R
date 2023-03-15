@@ -7,6 +7,8 @@
 #' @param tax_table the taxonomic table for each row of the `beta` matrix
 #' @param distance the distance used to compute the (dis)similarity between the
 #' topic composition and the Valencia centroids.
+#' @param max_distance the maximum distance allowed between a subCST and a topic
+#' for the topic to be labeled as "other" ("-O") instead of with the subCST label.
 #'
 #' @return a single LDA model or a list of LDA models (depending on the input)
 #' where the rownames of `beta` and the colnames of `gamma` match the label
@@ -42,6 +44,8 @@ label_topics <- function(lda_models, tax_table, distance, max_distance = 0.5){
 #' @param tax_table  the taxonomic table for each row of the `beta` matrix
 #' @param distance the distance used to compute the (dis)similarity between the
 #' topic composition and the Valencia centroids.
+#' @param max_distance the maximum distance allowed between a subCST and a topic
+#' for the topic to be labeled as "other" ("-O") instead of with the subCST label.
 #'
 #' @return a single LDA model where the rownames of `beta` and the colnames
 #' of `gamma` match the label of the closest Valencia sub-CST

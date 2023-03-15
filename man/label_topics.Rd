@@ -4,7 +4,7 @@
 \alias{label_topics}
 \title{Label topics to match the closest Valencia sub-CST}
 \usage{
-label_topics(lda_models, tax_table, distance)
+label_topics(lda_models, tax_table, distance, max_distance = 0.5)
 }
 \arguments{
 \item{lda_models}{a single LDA model (output of `topicmodels::LDA`) or
@@ -14,6 +14,9 @@ a list of LDA models (e.g., output of `alto::fit_lda_models`).}
 
 \item{distance}{the distance used to compute the (dis)similarity between the
 topic composition and the Valencia centroids.}
+
+\item{max_distance}{the maximum distance allowed between a subCST and a topic
+for the topic to be labeled as "other" ("-O") instead of with the subCST label.}
 }
 \value{
 a single LDA model or a list of LDA models (depending on the input)
