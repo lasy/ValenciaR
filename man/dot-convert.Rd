@@ -7,7 +7,7 @@
 .convert(input, conversion_table)
 }
 \arguments{
-\item{input}{a `matrix` with counts and proportions (samples are rows, species are columns)}
+\item{input}{a `matrix` with counts or proportions (samples are rows, species are columns)}
 
 \item{conversion_table}{a `data.frame` with at least two columns:}
 }

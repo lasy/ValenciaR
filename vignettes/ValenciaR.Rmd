@@ -37,9 +37,13 @@ pseudo_valencia_tax_table <-
 
 ```{r, eval = FALSE}
 
-sample_data <- readRDS("/Users/laurasymul/Dropbox/Gates LACTIN-V/16S_data/LactinV_16S_draft_incomplete_2022_09_15.RDS")
+sample_data <- readRDS("/Users/laurasymul/Dropbox/Gates LACTIN-V/LACTIN-V Data/01_preprocessed/16S_data/LactinV_16S_full_data_phyloseq_2023_01_11.RDS")
 input <- sample_data@otu_table %>% as.data.frame()
-tax_table <- sample_data@tax_table %>% as.data.frame() %>% set_rownames(1:nrow(sample_data@tax_table))
+tax_table <- 
+  sample_data@tax_table %>% 
+  as.data.frame() %>% 
+  set_rownames(1:nrow(sample_data@tax_table)) %>% 
+  mutate(Domain = Kingdom)
 
 res <- convert_to_Valencia_taxonomy(input = input, tax_table = tax_table)
 CSTs <- assign_to_Valencia_clusters(res$converted_input, distance = "YC")

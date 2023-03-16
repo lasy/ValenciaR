@@ -7,7 +7,7 @@
 convert_to_Valencia_taxonomy(input, tax_table)
 }
 \arguments{
-\item{input}{a table of ASV/OTU/species counts or proportions.}
+\item{input}{a table of ASV/OTU/species counts or proportions (samples are rows, features are columns).}
 
 \item{tax_table}{the taxonomic table associated to the columns of \code{input}.}
 }

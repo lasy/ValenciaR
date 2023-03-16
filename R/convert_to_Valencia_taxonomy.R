@@ -1,6 +1,6 @@
 #' "Converts" a taxonomic count/proportion table to match the Valencia cluster taxonomy.
 #'
-#' @param input a table of ASV/OTU/species counts or proportions.
+#' @param input a table of ASV/OTU/species counts or proportions (samples are rows, features are columns).
 #' @param tax_table the taxonomic table associated to the columns of \code{input}.
 #'
 #' @return a \code{list} with two elements. The first element is the
@@ -10,11 +10,12 @@
 #' the original \code{input} aggregated for each Valencia taxonomic label.
 #' @export
 convert_to_Valencia_taxonomy <- function(input, tax_table){
-  # input must be a matrix or a data.frame
-  # tax_table must be a data.frame with the following taxonomic levels: ADD
+
+
+  # TODO: input must be a matrix or a data.frame
 
   if (any(is.na(input))) {
-    warning("Missing data in the `input` table are replaced by 0.\n")
+    warning("Missing values in the `input` table are replaced by 0.\n")
     input[is.na(input)] <- 0
   }
 
@@ -150,7 +151,7 @@ match_taxonomies <- function(tax_table, v_tax_table){
       .,
       remaining_tax_table %>%
         select(tax_id) %>%
-        mutate(taxa = "d_Eukaryota")
+        mutate(valencia_taxa_label = "d_Eukaryota")
     )
 
   conversion_table <-
@@ -172,7 +173,7 @@ match_taxonomies <- function(tax_table, v_tax_table){
 
 #' Aggregate the counts/proportions from the input matrix by taxonomic label
 #'
-#' @param input a `matrix` with counts and proportions (samples are rows, species are columns)
+#' @param input a `matrix` with counts or proportions (samples are rows, species are columns)
 #' @param conversion_table a `data.frame` with at least two columns:
 #'
 #' @return a `matrix`
