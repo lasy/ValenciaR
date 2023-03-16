@@ -20,6 +20,21 @@ library(ggplot2)
 ```
 
 
+
+```{r}
+
+valencia_centroids <- get_Valencia_clusters()
+pseudo_valencia_tax_table <- 
+  build_Valencia_tax_table(taxa_vec = colnames(valencia_centroids))
+
+
+
+```
+
+
+
+
+
 ```{r, eval = FALSE}
 
 sample_data <- readRDS("/Users/laurasymul/Dropbox/Gates LACTIN-V/16S_data/LactinV_16S_draft_incomplete_2022_09_15.RDS")
