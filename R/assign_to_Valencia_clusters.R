@@ -51,10 +51,14 @@ assign_to_Valencia_clusters <- function(input, distance = "YC"){
 
   subCST <- rownames(v_clusters)[apply(distances, 1, which.min)]
   CST <- subCST %>% stringr::str_remove(.,"-[A-C]") %>% stringr::str_remove(.,"[0-4]")
+  assignment <-
+    data.frame(CST = CST, subCST = subCST, distance_to_subCST = apply(distances, 1, min)) %>%
+    set_rownames(rownames(input))
+
 
   list(
     distances = distances,
-    assignment = data.frame(CST = CST, subCST = subCST) %>% set_rownames(rownames(input)),
+    assignment = assignment,
     missing_taxa = missing_taxa
     )
 }
