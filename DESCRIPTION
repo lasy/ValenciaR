@@ -23,6 +23,7 @@ Imports:
 Suggests: 
     ggplot2,
     knitr,
+    phyloseq,
     rmarkdown
 VignetteBuilder: 
     knitr

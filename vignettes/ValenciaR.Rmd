@@ -15,8 +15,11 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(ValenciaR)
+library(ValenciaR) # devtools::install_github("lasy/ValenciaR")
 library(ggplot2)
+library(phyloseq)
+library(magrittr)
+library(dplyr)
 ```
 
 
@@ -27,31 +30,31 @@ valencia_centroids <- get_Valencia_clusters()
 pseudo_valencia_tax_table <- 
   build_Valencia_tax_table(taxa_vec = colnames(valencia_centroids))
 
-
-
 ```
 
 
+```{r}
 
+data("example_data")
 
-
-```{r, eval = FALSE}
-
-sample_data <- readRDS("/Users/laurasymul/Dropbox/Gates LACTIN-V/LACTIN-V Data/01_preprocessed/16S_data/LactinV_16S_full_data_phyloseq_2023_01_11.RDS")
-input <- sample_data@otu_table %>% as.data.frame()
+set.seed(1)
+random_samples <- sample(example_data@sam_data$SampleID, 100)
+example_data <- example_data %>% subset_samples(SampleID %in% random_samples)
+input <- example_data@otu_table %>% as.matrix()
 tax_table <- 
-  sample_data@tax_table %>% 
+  example_data@tax_table %>% 
   as.data.frame() %>% 
-  set_rownames(1:nrow(sample_data@tax_table)) %>% 
+  set_rownames(1:nrow(example_data@tax_table)) %>% 
   mutate(Domain = Kingdom)
 
 res <- convert_to_Valencia_taxonomy(input = input, tax_table = tax_table)
-CSTs <- assign_to_Valencia_clusters(res$converted_input, distance = "YC")
+CSTs <- assign_to_Valencia_clusters(res$converted_input, distance = "BC")
 
 ggplot(CSTs$assignment, aes(x = subCST, fill = CST)) +
   geom_bar() +
   facet_grid(. ~ CST, scales = "free", space = "free") +
-  ylab("Number of samples")
+  ylab("Number of samples") +
+  guides(fill = "none")
 
 ```
 
