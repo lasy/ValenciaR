@@ -35,7 +35,8 @@ pseudo_valencia_tax_table <-
 
 ```{r}
 
-data("example_data")
+# data from "Replication and Refinement of a Vaginal Microbial Signature of Preterm Birth", Callahan, 2017
+data("example_data") 
 
 set.seed(1)
 random_samples <- sample(example_data@sam_data$SampleID, 100)
