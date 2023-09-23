@@ -66,12 +66,18 @@ match_taxonomies <- function(tax_table, v_tax_table){
       Species =
         case_when(
           str_detect(Genus, "Lachnocurva") | str_detect(Genus, "Shuttleworthia") ~ "BVAB1",
+          str_detect(Genus, "BVAB2") ~ "BVAB2/BVAB3", # BVAB2
+          str_detect(Genus, "Mageeibacillus") & str_detect(Species, "indolicus") ~ "BVAB2/BVAB3", # BVAB3
+          str_detect(Genus, "Fannyhessea") ~ "vaginae",
           (Genus == "Sneathia") & str_detect(Species, "amnii") ~ "amnii",
           TRUE ~ Species
         ),
       Genus =
         case_when(
           str_detect(Genus, "Lachnocurva") | str_detect(Genus, "Shuttleworthia") ~ NA_character_,
+          str_detect(Genus, "BVAB2") ~ NA_character_, # BVAB2
+          str_detect(Genus, "Mageeibacillus") & str_detect(Species, "indolicus") ~ NA_character_, # BVAB3
+          str_detect(Genus, "Fannyhessea") ~ "Atopobium",
           str_detect(Genus, "Prevotella") & str_detect(Species, "corporis") ~ "Prevotella", # instead of "Prevotella_6",
           str_detect(Genus, "Prevotella") & str_detect(Species, "melaninogenica") ~ "Prevotella", # instead of "Prevotella_7",
           str_detect(Genus, "Prevotella") & str_detect(Species, "denticola") ~ "Prevotella", # instead of "Prevotella_7",
